@@ -1,6 +1,5 @@
 import random
 #Defining the password criteria class. Used to bundle the data for the specifics of the password.
-
 class password_criteria:
     def __init__(self, char_length, caps, symbols, numbers):
         self.char_length = char_length
@@ -85,13 +84,42 @@ def create_password():
     else:
         symbols_string = ""
 
+    #Some code to handle shuffling 
     non_randomised_string = caps_string + numbers_string + symbols_string
+    shufflelist = list(non_randomised_string)
+    #random.shuffle shuffles in place which is confusing as hell. It's why we reuse the indentifier.
+    random.shuffle(shufflelist)
+    randomised_list = shufflelist
 
-    non_randomised_list = list(non_randomised_string)
+    #randomised_string = ''.join(randomised_list)
 
-    randomised_list = random.shuffle(non_randomised_list)
-    return randomised_list
-    
+    #Now we're going to quickly use the char_length we asked for before:
+    character_length = int(choose_criteria.char_length)
+    randomised_list_result = randomised_list[0:character_length]
 
-foo = create_password()
-print(foo)
+    result = ''.join(randomised_list_result)
+
+    return result
+
+def main():
+    #splash screen
+    print("                                     _                 ")
+    print("  _ __  __ _ _______ __ _____ _ _ __| |  __ _ ___ _ _  ")
+    print(" | '_ \/ _` (_-<_-< V  V / _ \ '_/ _` | / _` / -_) ' \ ")
+    print(" | .__/\__,_/__/__/\_/\_/\___/_| \__,_| \__, \___|_||_|")
+    print(" |_|                                    |___/          ")
+
+    #options to create password or exit
+    print("1. Generate a password.")
+    print("2. Exit...")
+    option = input("Please select an option: ")
+    match option:
+        case '1':
+            password = create_password()
+            print("Generating Password...")
+            print("Password: " + password)
+        case '2':
+            print("Hope you enjoyed this little project :)")
+            exit()
+
+main()
