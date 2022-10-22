@@ -8,7 +8,12 @@ class password_criteria:
         self.numbers = numbers
 
     def criteria():
-        char_length = input("How many characters will your password be: ")
+        char_length = None
+        while isinstance(char_length, int) != True:
+            try: #DAMN. This worked? Seems like a weird way to do it but im proud of it.
+                char_length = int(input("How many characters will your password be: "))
+            except ValueError:
+                print("Value not an integer. Try again.")
         
         bool_caps = None
         while bool_caps == None:

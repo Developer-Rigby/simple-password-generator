@@ -1,4 +1,5 @@
 # simple password generator
- Just a quick and simple project to practice.
-
- Practising the principles of OOP.
+ A quick and easy project for practice.
+ 
+ 
+ Generates a password from user inputted conditions.
